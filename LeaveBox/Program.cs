@@ -2,12 +2,12 @@
 using System.CodeDom.Compiler;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.CSharp;
-using Newtonsoft.Json;
 using Script;
 
 namespace LeaveBox;
@@ -18,7 +18,7 @@ internal static class Program
 
     private static void ThrowException(Exception exception, string title)
     {
-        var text = s_debug ? $"错误信息：{exception.Message}\n调用堆栈：{exception.StackTrace}" : exception.Message;
+        var text = s_debug ? exception.ToString() : exception.Message;
         
         MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -29,7 +29,7 @@ internal static class Program
     {
         var input = "./config.xml";
 #if DEBUG
-        input = @"C:\Users\luozhen\RiderProjects\LeaveBox\LeaveBox\input.xml";
+        input = @"../../input.xml";
 #endif
             
         var document = new XmlDocument();
@@ -52,19 +52,19 @@ internal static class Program
             s_debug = true;
 
             var serializer = new XmlSerializer(config.GetType());
-
-            using var stream = new MemoryStream();
+            
+            var stream = new MemoryStream();
             
             serializer.Serialize(stream, config);
-            
-            Console.WriteLine(new StreamReader(stream).ReadToEnd());
+
+            json = Encoding.UTF8.GetString(stream.ToArray());
         }
         catch (Exception e)
         {
             ThrowException(e, "配置内容出错啦");
         }
 
-        // Build(json);
+        Build(json);
     }
 
     private static Config ReadConfig(XmlDocument document)

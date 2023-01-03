@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Script;
 
 public class Step
 {
+    [XmlAttribute]
     public string Id { get; set; }
 
+    [XmlAttribute]
     public string Next { get; set; }
 
     public static Step Parse(XmlNode node)

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace Script;
 
@@ -21,7 +23,11 @@ public class Script
 
     public void Run(string json)
     {
-        var config = JsonConvert.DeserializeObject<Config>(json)!;
+        var serializer = new XmlSerializer(typeof(Config));
+
+        var stream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+
+        var config = (Config)serializer.Deserialize(stream);
 
         m_dict = config.Steps.ToDictionary(s => s.Id);
 
