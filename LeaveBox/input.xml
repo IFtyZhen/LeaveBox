@@ -1,0 +1,10 @@
+﻿<Script start="1" debug="false">
+    <Step id="1" type="box" content="你是猪吗？">
+        <Button text="我是猪"/>
+<!--        <Button value="我不是" next="2"/>-->
+    </Step>
+<!--    <Step id="2" type="box" content="你就是猪！">-->
+<!--        <Button value="好吧我是猪"/>-->
+<!--        <Button value="不是！！" next="2"/>-->
+<!--    </Step>-->
+</Script>

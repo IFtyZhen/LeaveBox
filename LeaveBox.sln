@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaveBox", "LeaveBox\LeaveBox.csproj", "{28D0AF80-17A3-4EED-8C39-DB435FE4E9D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Script", "Script\Script.csproj", "{89F40A49-ABD4-4864-8122-E8B7A5ABCA14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28D0AF80-17A3-4EED-8C39-DB435FE4E9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D0AF80-17A3-4EED-8C39-DB435FE4E9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D0AF80-17A3-4EED-8C39-DB435FE4E9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D0AF80-17A3-4EED-8C39-DB435FE4E9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F40A49-ABD4-4864-8122-E8B7A5ABCA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F40A49-ABD4-4864-8122-E8B7A5ABCA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F40A49-ABD4-4864-8122-E8B7A5ABCA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F40A49-ABD4-4864-8122-E8B7A5ABCA14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
