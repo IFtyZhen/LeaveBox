@@ -7,4 +7,7 @@
         <Button text="好吧我是猪"/>
         <Button text="不是！！" next="2"/>
     </Step>
+    <Step id="3" type="input" content="请输入">
+        
+    </Step>
 </Script>

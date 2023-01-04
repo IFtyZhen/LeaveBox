@@ -3,108 +3,113 @@ using System.Windows.Forms;
 
 namespace Script;
 
+/// <summary>
+/// 包含1个Label和2个Button的小窗口
+/// </summary>
 internal class BoxForm2
 {
-    private readonly Form m_form;
+    private readonly Form _form;
 
-    private readonly Label m_content;
+    private readonly Label _content;
 
-    private readonly Button m_button1;
+    private readonly Button _button1;
 
-    private readonly Button m_button2;
+    private readonly Button _button2;
 
-    private string m_value1, m_value2;
+    private string _value1;
+    
+    private string _value2;
 
-    private string m_result;
+    private string _result;
 
     public BoxForm2()
     {
-        m_form = new Form();
+        _form = new Form();
 
-        m_form.Size = new Size(300, 200);
+        _form.Size = new Size(300, 200);
 
-        m_form.StartPosition = FormStartPosition.CenterScreen;
+        _form.StartPosition = FormStartPosition.CenterScreen;
 
-        m_form.FormBorderStyle = FormBorderStyle.FixedSingle;
+        _form.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-        m_form.ControlBox = false;
+        _form.ControlBox = false;
 
-        m_form.TopMost = true;
-
-
-        m_content = new Label();
-
-        m_content.Text = "阿巴阿巴阿巴阿巴";
-
-        m_content.Font = new Font("宋体", 14f, FontStyle.Regular);
-
-        m_content.Size = new Size(270, 80);
-
-        m_content.Location = new Point((m_form.Width - m_content.Width >> 1) + 5, 20);
-
-        m_content.TextAlign = ContentAlignment.TopLeft;
-
-        m_form.Controls.Add(m_content);
+        _form.TopMost = true;
 
 
-        m_button1 = new Button();
+        _content = new Label();
 
-        m_button1.Text = "OK";
+        _content.Text = "阿巴阿巴阿巴阿巴";
 
-        m_button1.Font = new Font("宋体", 14f, FontStyle.Regular);
+        _content.Font = new Font("宋体", 14f, FontStyle.Regular);
 
-        m_button1.Size = new Size(120, 40);
+        _content.Size = new Size(270, 80);
 
-        m_button1.Location = new Point((m_form.Width - m_button1.Width >> 1) - 70, m_form.Size.Height - 60);
+        _content.Location = new Point((_form.Width - _content.Width >> 1) + 5, 20);
 
-        m_button1.Click += (_, _) =>
+        _content.TextAlign = ContentAlignment.TopLeft;
+
+        _form.Controls.Add(_content);
+
+
+        _button1 = new Button();
+
+        _button1.Text = "OK";
+
+        _button1.Font = new Font("宋体", 14f, FontStyle.Regular);
+
+        _button1.Size = new Size(120, 40);
+
+        _button1.Location = new Point((_form.Width - _button1.Width >> 1) - 70, _form.Size.Height - 60);
+
+        _button1.Click += (_, _) =>
         {
-            m_result = m_value1;
+            _result = _value1;
 
-            m_form.Close();
+            _form.Close();
         };
 
-        m_form.Controls.Add(m_button1);
+        _form.Controls.Add(_button1);
 
 
-        m_button2 = new Button();
+        _button2 = new Button();
 
-        m_button2.Text = "Cancel";
+        _button2.Text = "Cancel";
 
-        m_button2.Font = new Font("宋体", 14f, FontStyle.Regular);
+        _button2.Font = new Font("宋体", 14f, FontStyle.Regular);
 
-        m_button2.Size = new Size(120, 40);
+        _button2.Size = new Size(120, 40);
 
-        m_button2.Location = new Point((m_form.Width - m_button2.Width >> 1) + 70, m_form.Size.Height - 60);
+        _button2.Location = new Point((_form.Width - _button2.Width >> 1) + 70, _form.Size.Height - 60);
 
-        m_button2.Click += (_, _) =>
+        _button2.Click += (_, _) =>
         {
-            m_result = m_value2;
+            _result = _value2;
 
-            m_form.Close();
+            _form.Close();
         };
 
 
-        m_form.Controls.Add(m_button2);
+        _form.Controls.Add(_button2);
     }
 
     public string Show(string content, string text1, string value1, string text2, string value2)
     {
-        m_content.Text = content;
+        _content.Text = content;
 
 
-        m_button1.Text = text1;
+        _button1.Text = text1;
 
-        m_value1 = value1;
-
-
-        m_button2.Text = text2;
-
-        m_value2 = value2;
+        _value1 = value1;
 
 
-        m_form.ShowDialog();
+        _button2.Text = text2;
 
-        return m_result;
+        _value2 = value2;
+
+
+        _form.ShowDialog();
+
+        return _result;
     }
 }

@@ -44,8 +44,7 @@ public class Script
 
                 var b2 = boxStep.Buttons[1];
 
-                var next = m_boxForm2.Show(boxStep.Content, b1.Text, b1.Next, b2.Text, b2.Next) ??
-                           boxStep.Next;
+                var next = m_boxForm2.Show(boxStep.Content, b1.Text, b1.Next, b2.Text, b2.Next) ?? boxStep.Next;
 
                 if (next != null && m_dict.ContainsKey(next))
                 {

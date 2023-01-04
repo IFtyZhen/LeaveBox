@@ -13,7 +13,7 @@ internal partial class Program
     {
         s_isDebug = true;
 
-        var scriptNode = document.SelectSingleNode("Script");
+        XmlNode scriptNode = document.SelectSingleNode("Script");
 
         if (scriptNode == default)
         {
@@ -22,7 +22,7 @@ internal partial class Program
 
         s_isDebug = scriptNode.Attributes!["debug"]?.Value == "true";
 
-        var startId = scriptNode.Attributes["start"]?.Value;
+        string startId = scriptNode.Attributes["start"]?.Value;
 
         if (startId == null)
         {
@@ -32,7 +32,7 @@ internal partial class Program
 
         var config = new Config();
 
-        var steps = document.SelectNodes("Script/Step");
+        XmlNodeList steps = document.SelectNodes("Script/Step");
 
         config.StartId = startId;
 

@@ -14,9 +14,9 @@ public class BoxButton
 
     public static BoxButton Parse(XmlNode node)
     {
-        var text = node.Attributes!["text"]?.Value;
+        string text = node.Attributes!["text"]?.Value;
 
-        var next = node.Attributes["next"]?.Value;
+        string next = node.Attributes["next"]?.Value;
 
         if (text == default)
         {

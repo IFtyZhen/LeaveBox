@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <LangVersion>default</LangVersion>
+    <LangVersion>11</LangVersion>
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -171,7 +171,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="input.xml" />
+    <Content Include="example.xml" />
     <None Include="Resources\Script.dll" />
   </ItemGroup>
   <ItemGroup>

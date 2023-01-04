@@ -1,10 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace Script;
 
+/// <summary>
+/// 消息盒步骤，包含：
+/// <list>
+///     <item>1个Label</item>
+///     <item>1~2个Button</item>
+/// </list>
+/// </summary>
 public class BoxStep : Step
 {
     [XmlAttribute]
@@ -15,7 +22,7 @@ public class BoxStep : Step
 
     public new static BoxStep Parse(XmlNode node)
     {
-        var content = node.Attributes!["content"]?.Value;
+        string content = node.Attributes!["content"]?.Value;
 
         if (content == default)
         {
@@ -26,16 +33,11 @@ public class BoxStep : Step
         {
             Content = content
         };
-        
-        var buttonList = new List<BoxButton>();
 
-        foreach (XmlNode childNode in node.ChildNodes)
-        {
-            if (childNode.Name != "Button")
-                continue;
-
-            buttonList.Add(BoxButton.Parse(childNode));
-        }
+        var buttonList = (from XmlNode childNode in node.ChildNodes
+                where childNode.Name == "Button"
+                select BoxButton.Parse(childNode))
+            .ToList();
 
         if (buttonList.Count < 1)
         {

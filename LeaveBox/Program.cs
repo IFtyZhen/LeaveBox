@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -13,9 +14,19 @@ internal static partial class Program
 
     public static void Main()
     {
-        var input = "./config.xml";
 #if DEBUG
-        input = @"../../input.xml";
+        const string input = @"../../example.xml";
+#else
+        string[] s_ConfigNames = { "config.txt", "config.xml", "config" };
+        
+        string input = s_ConfigNames.FirstOrDefault(File.Exists);
+
+        if (input == default)
+        {
+            MessageBox.Show("没有找到配置文件");
+            
+            Environment.Exit(-1);
+        }
 #endif
 
         var document = new XmlDocument();
@@ -28,7 +39,7 @@ internal static partial class Program
         {
             ShowException(e, "配置格式出错啦");
 
-            Environment.Exit(-1);
+            Environment.Exit(-2);
         }
 
         var json = default(string);
@@ -51,7 +62,7 @@ internal static partial class Program
         {
             ShowException(e, "配置内容出错啦");
 
-            Environment.Exit(-2);
+            Environment.Exit(-3);
         }
 
         s_config = json.Replace("\"", "\"\"");
@@ -60,10 +71,10 @@ internal static partial class Program
 
         Build();
     }
-    
+
     private static void ShowException(Exception exception, string title)
     {
-        var text = s_isDebug ? exception.ToString() : exception.Message;
+        string text = s_isDebug ? exception.ToString() : exception.Message;
 
         MessageBox.Show(text, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
     }

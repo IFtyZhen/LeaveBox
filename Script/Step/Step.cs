@@ -14,11 +14,11 @@ public class Step
 
     public static Step Parse(XmlNode node)
     {
-        var id = node.Attributes!["id"]?.Value;
+        string id = node.Attributes!["id"]?.Value;
 
-        var type = node.Attributes["type"]?.Value;
+        string type = node.Attributes["type"]?.Value;
 
-        var next = node.Attributes["next"]?.Value;
+        string next = node.Attributes["next"]?.Value;
 
         if (id == default)
         {

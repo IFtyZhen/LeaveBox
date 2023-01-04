@@ -2,7 +2,6 @@
 
 internal partial class Program
 {
-    
     private static string Source => $@"
 using System;
 using System.Resources;

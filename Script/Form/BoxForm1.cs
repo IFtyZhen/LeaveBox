@@ -3,66 +3,69 @@ using System.Windows.Forms;
 
 namespace Script;
 
+/// <summary>
+/// 包含1个Label和1个Button的小窗口
+/// </summary>
 public class BoxForm1
 {
-    private readonly Form m_form;
+    private readonly Form _form;
 
-    private readonly Label m_content;
+    private readonly Label _content;
 
-    private readonly Button m_button;
+    private readonly Button _button;
 
     public BoxForm1()
     {
-        m_form = new Form();
+        _form = new Form();
 
-        m_form.Size = new Size(300, 200);
+        _form.Size = new Size(300, 200);
 
-        m_form.StartPosition = FormStartPosition.CenterScreen;
+        _form.StartPosition = FormStartPosition.CenterScreen;
 
-        m_form.FormBorderStyle = FormBorderStyle.FixedSingle;
+        _form.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-        m_form.ControlBox = false;
+        _form.ControlBox = false;
 
-        m_form.TopMost = true;
-
-
-        m_content = new Label();
-
-        m_content.Text = "阿巴阿巴阿巴阿巴";
-
-        m_content.Font = new Font("宋体", 14f, FontStyle.Regular);
-
-        m_content.Size = new Size(270, 80);
-
-        m_content.Location = new Point((m_form.Width - m_content.Width >> 1) + 5, 20);
-
-        m_content.TextAlign = ContentAlignment.TopLeft;
-
-        m_form.Controls.Add(m_content);
+        _form.TopMost = true;
 
 
-        m_button = new Button();
+        _content = new Label();
 
-        m_button.Text = "OK";
+        _content.Text = "阿巴阿巴阿巴阿巴";
 
-        m_button.Font = new Font("宋体", 12f, FontStyle.Regular);
+        _content.Font = new Font("宋体", 14f, FontStyle.Regular);
 
-        m_button.Size = new Size(80, 40);
+        _content.Size = new Size(270, 80);
 
-        m_button.Location = new Point(m_form.Width - m_button.Width >> 1, m_form.Size.Height - 60);
+        _content.Location = new Point((_form.Width - _content.Width >> 1) + 5, 20);
+
+        _content.TextAlign = ContentAlignment.TopLeft;
+
+        _form.Controls.Add(_content);
 
 
-        m_button.Click += (_, _) => { m_form.Close(); };
+        _button = new Button();
 
-        m_form.Controls.Add(m_button);
+        _button.Text = "OK";
+
+        _button.Font = new Font("宋体", 12f, FontStyle.Regular);
+
+        _button.Size = new Size(80, 40);
+
+        _button.Location = new Point(_form.Width - _button.Width >> 1, _form.Size.Height - 60);
+
+
+        _button.Click += (_, _) => { _form.Close(); };
+
+        _form.Controls.Add(_button);
     }
 
     public void Show(string content, string button)
     {
-        m_content.Text = content;
+        _content.Text = content;
 
-        m_button.Text = button;
+        _button.Text = button;
 
-        m_form.ShowDialog();
+        _form.ShowDialog();
     }
 }
