@@ -7,8 +7,10 @@ namespace Script;
 
 public class BoxStep : Step
 {
+    [XmlAttribute]
     public string Content { get; set; }
 
+    [XmlArray]
     public BoxButton[] Buttons { get; set; }
 
     public new static BoxStep Parse(XmlNode node)
@@ -43,32 +45,5 @@ public class BoxStep : Step
         step.Buttons = buttonList.ToArray();
 
         return step;
-    }
-}
-
-[Serializable]
-public class BoxButton
-{
-    public string Text { get; set; }
-
-    public string Next { get; set; }
-
-    public static BoxButton Parse(XmlNode node)
-    {
-        var text = node.Attributes!["text"]?.Value;
-
-        var next = node.Attributes["next"]?.Value;
-
-        if (text == default)
-        {
-            throw new Exception("每个Button标签必须要有text属性");
-        }
-
-        return new BoxButton
-        {
-            Text = text,
-
-            Next = next
-        };
     }
 }
