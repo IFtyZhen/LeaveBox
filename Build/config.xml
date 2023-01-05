@@ -1,0 +1,25 @@
+﻿<Script start="3" debug="false">
+<!--    <Step id="1" type="box" content="你是猪吗？">-->
+<!--        <Button text="我是猪"/>-->
+<!--        <Button text="我不是" next="2"/>-->
+<!--    </Step>-->
+<!--    <Step id="2" type="box" content="你就是猪！">-->
+<!--        <Button text="好吧我是猪"/>-->
+<!--        <Button text="不是！！" next="3"/>-->
+<!--    </Step>-->
+    <Step id="3" type="input" content="阿西吧" value="哇">
+        <Button text="卧槽" next="哇">
+            <Case value="哇哦" next="哇哦"/>
+            <Case value="哇塞" next="哇塞"/>
+        </Button>
+    </Step>
+    <Step id="哇" type="box" content="哇">
+        <Button text="OK" />
+    </Step>
+    <Step id="哇哦" type="box" content="哇哦">
+        <Button text="OK" />
+    </Step>
+    <Step id="哇塞" type="box" content="哇塞">
+        <Button text="OK" />
+    </Step>
+</Script>
