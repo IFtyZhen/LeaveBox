@@ -1,5 +1,6 @@
 /.vs/
-/Build/Output/
+/Build/Output/**
 /packages/
 bin/
 obj/
+
