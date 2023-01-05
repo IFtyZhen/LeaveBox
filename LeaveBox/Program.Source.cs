@@ -15,13 +15,13 @@ internal static class Program
     {{
         try
         {{
-            var resourceManager = new ResourceManager(""Data/res"", typeof(Program).Assembly);
+            var resourceManager = new ResourceManager(""res"", typeof(Program).Assembly);
         
             var bytes = (byte[])resourceManager.GetObject(""Script"");
 
             var script = Assembly.Load(bytes);
         
-            var obj = script.CreateInstance(""Script.Script"");
+            var obj = script.CreateInstance(""Script.ScriptPlayer"");
 
             var run = obj.GetType().GetMethod(""Run"");
 

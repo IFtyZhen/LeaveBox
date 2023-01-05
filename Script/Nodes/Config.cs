@@ -1,8 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Script;
+namespace Script.Nodes;
 
 [XmlInclude(typeof(BoxStep))]
+[XmlInclude(typeof(InputStep))]
 public class Config
 {
     [XmlAttribute]

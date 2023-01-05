@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Script;
+namespace Script.Nodes;
 
 /// <summary>
 /// 消息盒步骤，包含：
@@ -12,13 +13,13 @@ namespace Script;
 ///     <item>1~2个Button</item>
 /// </list>
 /// </summary>
-public class BoxStep : Step
+public partial class BoxStep : Step
 {
     [XmlAttribute]
     public string Content { get; set; }
 
     [XmlArray]
-    public BoxButton[] Buttons { get; set; }
+    public Button[] Buttons { get; set; }
 
     public new static BoxStep Parse(XmlNode node)
     {
@@ -34,18 +35,20 @@ public class BoxStep : Step
             Content = content
         };
 
-        var buttonList = (from XmlNode childNode in node.ChildNodes
+        List<Button> buttonList = (from XmlNode childNode in node.ChildNodes
                 where childNode.Name == "Button"
-                select BoxButton.Parse(childNode))
-            .ToList();
+                select Button.Parse(childNode)).ToList();
 
-        if (buttonList.Count < 1)
+        switch (buttonList.Count)
         {
-            throw new Exception("若Step标签的type=\"box\"，则必须拥有至少1个Button子标签");
+            case < 1:
+                throw new Exception("若Step标签的type=\"box\"，则至少要有1个Button子标签");
+            case > 2:
+                throw new Exception("若Step标签的type=\"box\"，则最多拥有2个Button子标签");
+            default:
+                step.Buttons = buttonList.ToArray();
+
+                return step;
         }
-
-        step.Buttons = buttonList.ToArray();
-
-        return step;
     }
 }

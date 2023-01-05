@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using Script.Nodes;
 
 namespace LeaveBox;
 
@@ -14,20 +16,16 @@ internal static partial class Program
 
     public static void Main()
     {
-#if DEBUG
-        const string input = @"../../example.xml";
-#else
         string[] s_ConfigNames = { "config.txt", "config.xml", "config" };
-        
+
         string input = s_ConfigNames.FirstOrDefault(File.Exists);
 
         if (input == default)
         {
             MessageBox.Show("没有找到配置文件");
-            
+
             Environment.Exit(-1);
         }
-#endif
 
         var document = new XmlDocument();
 
@@ -42,11 +40,9 @@ internal static partial class Program
             Environment.Exit(-2);
         }
 
-        var json = default(string);
-
         try
         {
-            var config = Config(document);
+            Config config = Config(document);
 
             s_isDebug = true;
 
@@ -56,7 +52,7 @@ internal static partial class Program
 
             serializer.Serialize(stream, config);
 
-            json = Encoding.UTF8.GetString(stream.ToArray());
+            s_config = Encoding.UTF8.GetString(stream.ToArray());
         }
         catch (Exception e)
         {
@@ -65,11 +61,15 @@ internal static partial class Program
             Environment.Exit(-3);
         }
 
-        s_config = json.Replace("\"", "\"\"");
+        s_config = s_config.Replace("\"", "\"\"");
 
-        MessageBox.Show(s_config);
+        Assembly assembly = Build();
 
-        Build();
+#if DEBUG
+        MethodInfo main = assembly.EntryPoint;
+
+        main.Invoke(null, new object[] { });
+#endif
     }
 
     private static void ShowException(Exception exception, string title)

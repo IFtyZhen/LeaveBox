@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml;
-using Script;
+using Script.Nodes;
 
 namespace LeaveBox;
 

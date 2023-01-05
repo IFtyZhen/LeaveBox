@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Script;
+namespace Script.Nodes;
 
 public class Step
 {
@@ -33,6 +33,8 @@ public class Step
         Step step = type switch
         {
             "box" => BoxStep.Parse(node),
+
+            "input" => InputStep.Parse(node),
 
             _ => throw new Exception($"Step标签的type属性不能为{type}")
         };
